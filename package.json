@@ -1,0 +1,24 @@
+{
+  "name": "prabhatkhabartestingbot",
+  "version": "1.0.0",
+  "description": "bot to get weather updates from prabhat khabar bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pushkarydv/PrabhatKhabarTestingBot.git"
+  },
+  "author": "Pushkar Yadav",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pushkarydv/PrabhatKhabarTestingBot/issues"
+  },
+  "homepage": "https://github.com/pushkarydv/PrabhatKhabarTestingBot#readme",
+  "dependencies": {
+    "axios": "^1.9.0",
+    "dotenv": "^16.5.0",
+    "node-telegram-bot-api": "^0.66.0"
+  }
+}
