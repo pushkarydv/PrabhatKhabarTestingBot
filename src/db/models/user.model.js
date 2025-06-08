@@ -8,6 +8,14 @@ const UserSchema = new Schema(
       required: true,
       unique: true,
     },
+    name: {
+      type: String,
+      default: '',
+    },
+    username: {
+      type: String,
+      default: '',
+    },
     isSubscribedToWeather: {
       type: Boolean,
       default: false,

@@ -1,10 +1,20 @@
 import { UserModel } from '../models/user.model.js';
 
-export const createNewUserIfNotExists = async (chatId) => {
+export const createNewUserIfNotExists = async ({
+  chatId,
+  name = '',
+  username = '',
+}) => {
   try {
     const user = await UserModel.find({ chatId });
     if (user.length === 0) {
-      const newUser = new UserModel({ chatId });
+      const newUser = new UserModel({
+        chatId,
+        name,
+        username,
+        isSubscribedToWeather: false,
+        isBanned: false,
+      });
       await newUser.save();
       return newUser;
     }
@@ -28,12 +38,20 @@ export const getUserByChatId = async (chatId) => {
   }
 };
 
-export const updateUserSubscription = async (chatId, isSubscribed) => {
+export const updateUserSubscription = async ({
+  chatId,
+  isSubscribed = false,
+  name = '',
+  username = '',
+}) => {
   try {
     const user = await UserModel.findOneAndUpdate(
       { chatId },
-      { isSubscribedToWeather: isSubscribed },
-      { new: true }
+      { isSubscribedToWeather: isSubscribed,
+        name,
+        username,
+       },
+      { new: true, upsert: true }
     );
     if (!user) {
       throw new Error('User not found');
