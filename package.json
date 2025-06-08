@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "bot to get weather updates from prabhat khabar bot",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "bot-start": "node --require dotenv/config index.js"
   },
   "repository": {
     "type": "git",
