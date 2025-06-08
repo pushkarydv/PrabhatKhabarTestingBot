@@ -1,0 +1,26 @@
+name: Daily Weather Update
+
+on:
+  workflow_dispatch:
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref == 'refs/heads/main' && 'prod' }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: 'npm'
+      
+      - run: npm ci
+      
+      - name: weather updates
+        run: node send-weather-updates-to-subscribed-users.js
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          
